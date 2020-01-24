@@ -1,11 +1,7 @@
 ## Installation
 
 ```
-npm i -g @notbrain/awsmfa (COMING SOON)
-```
-
-```
-git clone --depth 1 https://github.com/notbrain/awsmfa
+git clone --depth 1 https://github.com/volta-charging/awsmfa
 cd awsmfa
 npm i -g 
 ```
