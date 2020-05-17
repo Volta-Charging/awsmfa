@@ -74,25 +74,24 @@ try {
   );
   creds = JSON.parse(credString).Credentials;
 } catch (e) {
-    console.error(e.message);
-    process.exit(1);
+  console.error(e.message);
+  process.exit(1);
 }
 
 config.default = {
-    aws_access_key_id: creds.AccessKeyId,
-    aws_secret_access_key: creds.SecretAccessKey,
-    aws_session_token: creds.SessionToken
+  aws_access_key_id: creds.AccessKeyId,
+  aws_secret_access_key: creds.SecretAccessKey,
+  aws_session_token: creds.SessionToken
 };
 
 configString = Object.keys(config).reduce((acc, profile) => {
+  acc += `[${profile}]`;
+  Object.keys(config[profile]).forEach(key => {
     acc += `
-
-[${profile}]`;
-    Object.keys(config[profile]).forEach(key => {
-        acc += `
 ${key} = ${config[profile][key]}`;
-    });
-    return acc;
+  });
+  acc += '\n\n'
+  return acc;
 }, '');
 
 fs.writeFileSync(credentialsFile, configString);
